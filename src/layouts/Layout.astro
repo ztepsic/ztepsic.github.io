@@ -22,6 +22,11 @@ const { title, description, keywords } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <nav class="language-nav">
+      <a href={Astro.url.pathname.startsWith("/hr") ? "/" : "/hr"}>
+        {Astro.url.pathname.startsWith("/hr") ? "🇬🇧 English" : "🇭🇷 Hrvatski"}
+      </a>
+    </nav>
     <slot />
     <Footer beginYear="2006" />
   </body>
@@ -42,6 +47,27 @@ const { title, description, keywords } = Astro.props;
     font-family: system-ui, sans-serif;
     background: #13151a;
   }
+  .language-nav {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+  }
+
+  .language-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s;
+  }
+
+  .language-nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
   code {
     font-family:
       Menlo,
